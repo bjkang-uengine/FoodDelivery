@@ -32,9 +32,7 @@ public class Order {
 
     @PostPersist
     public void onPostPersist() {
-        OrderPlaced orderPlaced = new OrderPlaced(this);
-        orderPlaced.publishAfterCommit();
-
+  
         OrderCanceled orderCanceled = new OrderCanceled(this);
         orderCanceled.publishAfterCommit();
 
@@ -51,7 +49,13 @@ public class Order {
 
     public void selectFood(SelectFoodCommand selectFoodCommand) {}
 
-    public void orderCancel() {}
+    public void orderCancel() {
+
+        OrderPlaced orderPlaced = new OrderPlaced(this);
+        orderPlaced.publishAfterCommit();
+
+        
+    }
 
     public static void updateStatus(DeeveryStarted deeveryStarted) {
         /** Example 1:  new item 
