@@ -1,0 +1,285 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  labels:
+    app: order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - name: order
+          image: username/order:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cooking
+  labels:
+    app: cooking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cooking
+  template:
+    metadata:
+      labels:
+        app: cooking
+    spec:
+      containers:
+        - name: cooking
+          image: username/cooking:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delevery
+  labels:
+    app: delevery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: delevery
+  template:
+    metadata:
+      labels:
+        app: delevery
+    spec:
+      containers:
+        - name: delevery
+          image: username/delevery:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification
+  labels:
+    app: notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification
+  template:
+    metadata:
+      labels:
+        app: notification
+    spec:
+      containers:
+        - name: notification
+          image: username/notification:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  labels:
+    app: dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard
+  template:
+    metadata:
+      labels:
+        app: dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: username/dashboard:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: order
+  labels:
+    app: order
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: order
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cooking
+  labels:
+    app: cooking
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: cooking
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: delevery
+  labels:
+    app: delevery
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: delevery
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification
+  labels:
+    app: notification
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: notification
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  labels:
+    app: dashboard
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: dashboard
+
