@@ -36,7 +36,7 @@ mvn spring-boot:run
 ## Test by API
 - order
 ```
- http :8088/orders id="id" adress="adress" foodId="foodId" status="status" storeId="storeId" option="option" customerId="customerId" 
+ http :8088/orders id="id" adress="adress" foodId="foodId" status="status" storeId="storeId" option="option" customerId="customerId" test="test" 
 ```
 - cooking
 ```
