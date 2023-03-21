@@ -73,6 +73,7 @@
                     { text: "storeId", value: "storeId" },
                     { text: "option", value: "option" },
                     { text: "customerId", value: "customerId" },
+                    { text: "test", value: "test" },
                 ],
             order : [],
             newValue: {},
@@ -96,6 +97,7 @@
                 'storeId': 0,
                 'option': '',
                 'customerId': 0,
+                'test': '',
             }
         },
         methods: {

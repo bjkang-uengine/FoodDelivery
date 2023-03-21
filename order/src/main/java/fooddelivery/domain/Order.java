@@ -30,6 +30,8 @@ public class Order {
 
     private Long customerId;
 
+    private String test;
+
     @PostPersist
     public void onPostPersist() {
   

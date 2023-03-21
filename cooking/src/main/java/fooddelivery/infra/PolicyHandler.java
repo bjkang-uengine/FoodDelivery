@@ -21,4 +21,20 @@ public class PolicyHandler {
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='OrderPlaced'"
+    )
+    public void wheneverOrderPlaced_OrderRegistrationInfo(
+        @Payload OrderPlaced orderPlaced
+    ) {
+        OrderPlaced event = orderPlaced;
+        System.out.println(
+            "\n\n##### listener OrderRegistrationInfo : " + orderPlaced + "\n\n"
+        );
+
+        // Sample Logic //
+        Cooking.orderRegistrationInfo(event);
+    }
 }

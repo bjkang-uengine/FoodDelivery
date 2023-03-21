@@ -74,6 +74,7 @@
                 'storeId': 0,
                 'option': '',
                 'customerId': 0,
+                'test': '',
             }
         },
         methods:{

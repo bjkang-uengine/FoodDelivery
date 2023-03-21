@@ -23,6 +23,9 @@
             <div>
                 <Number label="CustomerId" v-model="item.customerId" :editMode="editMode" @change="change" />
             </div>
+            <div>
+                <String label="Test" v-model="item.test" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>
